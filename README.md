@@ -1,0 +1,1 @@
+# mia_endpoint_common
