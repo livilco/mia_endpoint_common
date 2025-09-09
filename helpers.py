@@ -5,6 +5,7 @@ from pathlib import Path
 import yaml
 from fastapi import HTTPException
 import sentry_sdk
+from datetime import datetime, timezone
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -46,3 +47,14 @@ def get_model_config(model_alias: str, model_path: str):
         )
 
     return config_path
+
+
+def get_current_utc_time_and_day():
+    utc_now = datetime.now(timezone.utc)
+
+    # ISO 8601 format
+    iso_date = utc_now.date().isoformat()
+
+    day_name = utc_now.strftime("%A")
+
+    return iso_date, day_name
